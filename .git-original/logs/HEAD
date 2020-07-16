@@ -1,0 +1,7 @@
+0000000000000000000000000000000000000000 6f1371bae47c9157d59ed7ed3fdc0dbac58b0d51 Simon Zhao <47939204+Shimunz@users.noreply.github.com> 1594075433 +1200	clone: from https://github.com/ldreaaml/COSC345.git
+6f1371bae47c9157d59ed7ed3fdc0dbac58b0d51 6f1371bae47c9157d59ed7ed3fdc0dbac58b0d51 Simon Zhao <47939204+Shimunz@users.noreply.github.com> 1594184787 +1200	reset: moving to HEAD
+6f1371bae47c9157d59ed7ed3fdc0dbac58b0d51 6426cd5e030d9b32695ef447b930a0015cd10359 Simon Zhao <47939204+Shimunz@users.noreply.github.com> 1594184788 +1200	merge origin/master: Fast-forward
+6426cd5e030d9b32695ef447b930a0015cd10359 824815aa04add3371af80d7a0e13a77b6eaa66d4 Simon Zhao <47939204+Shimunz@users.noreply.github.com> 1594693502 +1200	commit: updated some code
+824815aa04add3371af80d7a0e13a77b6eaa66d4 6426cd5e030d9b32695ef447b930a0015cd10359 Simon Zhao <47939204+Shimunz@users.noreply.github.com> 1594693669 +1200	reset: moving to HEAD~1
+6426cd5e030d9b32695ef447b930a0015cd10359 dbefab0df6c5993073c48e32b68aed9080553b41 Simon Zhao <47939204+Shimunz@users.noreply.github.com> 1594792805 +1200	commit: attempting to create chat log
+dbefab0df6c5993073c48e32b68aed9080553b41 fc35bf2b7fa1d3bc56a38fff6a7d62abc872e732 Simon Zhao <47939204+Shimunz@users.noreply.github.com> 1594797188 +1200	commit: user sending to recycer view working
