@@ -12,27 +12,41 @@ import kotlinx.android.synthetic.main.chat_log_from_row.view.*
 
 class ChatLog : AppCompatActivity() {
 
+    private var messageList = mutableListOf<String>()
+    private var userMessage = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
         supportActionBar?.title = "Chat log"
 
-        val messageList = mutableListOf<String>()
-        var userMessage = ""
-
         rv_chat_log.layoutManager = LinearLayoutManager(this)
         rv_chat_log.adapter = ChatLogAdapter(messageList)
 
+        button_send.setOnClickListener(clickListener)
+        /*
         button_send.setOnClickListener(){
             if (editText_message != null){
                 userMessage = editText_message.text.toString()
                 messageList.add(userMessage)
                 (rv_chat_log.adapter as ChatLogAdapter).notifyItemInserted(messageList.size)
             }
-        }
+        }*/
 
     }
+
+
+    private val clickListener: View.OnClickListener = View.OnClickListener {
+        when (it?.id) {
+            R.id.button_send-> {
+                userMessage = editText_message.text.toString()
+                messageList.add(userMessage)
+                (rv_chat_log.adapter as ChatLogAdapter).notifyItemInserted(messageList.size)
+            }
+        }
+    }
+
 }
 
 /**
