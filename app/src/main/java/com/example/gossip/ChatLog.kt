@@ -25,18 +25,13 @@ class ChatLog : AppCompatActivity() {
         rv_chat_log.adapter = ChatLogAdapter(messageList)
 
         button_send.setOnClickListener(clickListener)
-        /*
-        button_send.setOnClickListener(){
-            if (editText_message != null){
-                userMessage = editText_message.text.toString()
-                messageList.add(userMessage)
-                (rv_chat_log.adapter as ChatLogAdapter).notifyItemInserted(messageList.size)
-            }
-        }*/
 
     }
 
-
+    /**
+     * Actions for what the onClickListeners do. E.g: sets the send button actions
+     * in the chat log activity.
+     */
     private val clickListener: View.OnClickListener = View.OnClickListener {
         when (it?.id) {
             R.id.button_send-> {
