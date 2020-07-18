@@ -2,7 +2,7 @@
 
 buildscript {
     ext.kotlin_version = '1.3.72'
-    ext.dokka_version = '0.10.1'
+    ext.dokka_version = '0.9.18'
     repositories {
         google()
         jcenter()
@@ -26,11 +26,6 @@ allprojects {
         
     }
 }
-
-//task dokkaJavadoc(type: org.jetbrains.dokka.gradle.DokkaTask) {
-  //  outputFormat = "javadoc"
-    //outputDirectory = "$buildDir/dokkaJavadoc"
-//}
 
 task clean(type: Delete) {
     delete rootProject.buildDir
