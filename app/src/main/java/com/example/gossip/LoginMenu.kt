@@ -11,6 +11,11 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginMenu : AppCompatActivity() {
 
+    /**
+     * Called when the activity is started
+     *
+     * @param savedInstanceState Detailed info on android docs. Contains saved data on activity.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
