@@ -93,5 +93,4 @@ class MessagesMenu : AppCompatActivity() {
             startActivity(intent)
         }
     }
-
 }

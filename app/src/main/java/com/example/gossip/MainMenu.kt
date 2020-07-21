@@ -3,6 +3,7 @@ package com.example.gossip
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_menu.*
@@ -16,6 +17,9 @@ class MainMenu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
 
+        //button_Menu_Login.setOnClickListener(clickListener)
+        //button_Menu_Register.setOnClickListener(clickListener)
+
         //To login Menu
         button_Menu_Login.setOnClickListener{
             val loginIntent = Intent(this, LoginMenu::class.java)
@@ -26,6 +30,26 @@ class MainMenu : AppCompatActivity() {
         button_Menu_Register.setOnClickListener{
             val registerIntent = Intent(this, RegisterMenu::class.java)
             startActivity(registerIntent)
+        }
+    }
+
+    /**
+     * Used to set the behaviour of buttons
+     */
+    private val clickListener :View.OnClickListener = View.OnClickListener {
+        when (it?.id){
+            //Sets the register button behaviour
+            // TODO (Needs testing)
+            R.id.button_Menu_Register->{
+                val registerIntent = Intent(this, RegisterMenu::class.java)
+                startActivity(registerIntent)
+            }
+            //Sets the login button behaviour
+            // TODO (Needs testing)
+            R.id.button_Menu_Login->{
+                val loginIntent = Intent(this, LoginMenu::class.java)
+                startActivity(loginIntent)
+            }
         }
     }
 
