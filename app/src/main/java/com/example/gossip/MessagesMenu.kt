@@ -75,7 +75,17 @@ class MessagesMenu : AppCompatActivity() {
         val userAuth = FirebaseAuth.getInstance().currentUser
 
         if (userAuth != null) {
+            FirebaseInstanceId.getInstance().instanceId.
+                    addOnCompleteListener(OnCompleteListener {
+                        if(!it.isSuccessful) {
+                            Log.w("getInstanceID failed", it.exception)
+                            return@OnCompleteListener
+                        }
 
+                        val token = it.result?.token
+
+                        Log.d("getInstanceID", token)
+                    })
         } else {
             Log.d("Current_User", "Auth failed")
             val intent = Intent(this, MainMenu::class.java)
