@@ -4,6 +4,9 @@ import android.util.Log
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
+/**
+ * Some features are yet to be implemented
+ */
 class GossipFirebaseMessagingService : FirebaseMessagingService(){
 
     /**
