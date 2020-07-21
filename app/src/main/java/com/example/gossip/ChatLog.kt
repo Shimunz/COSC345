@@ -15,6 +15,9 @@ class ChatLog : AppCompatActivity() {
     private var messageList = mutableListOf<String>()
     private var userMessage = ""
 
+    /**
+     *
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
