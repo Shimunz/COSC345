@@ -15,7 +15,7 @@ class GossipFirebaseMessagingService : FirebaseMessagingService(){
      * @param remoteMessage Object representing the message from Firebase cloud messaging
      */
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
-
+        // TODO (Do something on message received)
     }
 
     /**
