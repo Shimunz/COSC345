@@ -31,7 +31,6 @@
         </activity>
         <activity android:name=".ChatLog" />
         <activity android:name=".Anonimity_control" />
-        <activity android:name=".GossipFirebaseMessagingService" />
         
         <service
             android:name=".GossipFirebaseMessagingService"

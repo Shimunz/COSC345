@@ -16,6 +16,7 @@ class GossipFirebaseMessagingService : FirebaseMessagingService(){
      */
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // TODO (Do something on message received)
+        Log.d("MessageReceived", remoteMessage.toString())
     }
 
     /**
