@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_register.*
 
 /**
@@ -61,7 +63,7 @@ class RegisterMenu : AppCompatActivity() {
      * Saves users to the Firebase data base
      */
     private fun saveUserToFirebaseDatabase() {
-        val uid = FirebaseAuth.getInstance().uid ?:""
+        val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/user/$uid")
 
         val user = Users(uid, editText_username.text.toString(), editText_email.text.toString())
@@ -69,9 +71,31 @@ class RegisterMenu : AppCompatActivity() {
         //Actual save line
         ref.setValue(user)
             .addOnSuccessListener {
+                getToken(user)
                 val intent = Intent(this, LoginMenu::class.java)
                 startActivity(intent)
             }
+    }
+
+    private fun getToken(user: Users) {
+        val userAuth = FirebaseAuth.getInstance().currentUser
+        val ref = FirebaseDatabase.getInstance().getReference("/user/${user.uid}")
+
+        if (userAuth != null) {
+            FirebaseInstanceId.getInstance().instanceId.addOnCompleteListener(OnCompleteListener {
+                if (!it.isSuccessful) {
+                    Log.w("getInstanceID failed", it.exception)
+                    return@OnCompleteListener
+                }
+
+                val token = it.result?.token
+                Log.d("getInstanceID", token)
+
+                user.userInstanceId = token
+
+                ref.setValue(user)
+            })
+        }
     }
 }
 

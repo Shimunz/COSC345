@@ -24,17 +24,6 @@ class MessagesMenu : AppCompatActivity() {
         setContentView(R.layout.activity_messages_menu)
 
         supportActionBar?.title = "Chats"
-
-        FirebaseInstanceId.getInstance().instanceId
-            .addOnCompleteListener(OnCompleteListener {
-                if (!it.isSuccessful){
-                    Log.w("getInstanceID failed", it.exception)
-                }
-
-                val token = it.result?.token
-
-                Log.d("getInstanceID success", token.toString())
-            })
     }
 
     /**

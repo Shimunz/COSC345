@@ -12,6 +12,9 @@ class Users {
     var uid : String? = null
     var username : String? =null
     var email : String? = null
+    var userInstanceId : String? = null
+
+    constructor()
 
     constructor(uid: String?, username: String?, email : String?) {
         this.uid = uid
@@ -19,6 +22,11 @@ class Users {
         this.email = email
     }
 
-    constructor()
+    constructor(uid: String?, username: String?, email: String?, instanceId: String?) {
+        this.uid = uid
+        this.username = username
+        this.email = email
+        this.userInstanceId = instanceId
+    }
 
 }
