@@ -25,7 +25,7 @@ class GossipFirebaseMessagingService : FirebaseMessagingService() {
      */
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         // TODO (Do something on message received)
-        Log.d(TAG, "From: ${remoteMessage.from}")
+        Log.d("message received", "From: ${remoteMessage.from}")
 
         if (remoteMessage.data.isNotEmpty()) {
             Log.d(TAG, "Message data payload: ${remoteMessage.data}")
@@ -64,6 +64,9 @@ class GossipFirebaseMessagingService : FirebaseMessagingService() {
      * Sends out notifications. Also creates a notification channel if APK is greater than 26
      * due to android requirements.
      *
+     * TODO:
+     * The notification sent out is clickable. Should take you to the user that sent the message.
+     *
      * @param messageBody is the message that is we are sending in the notification
      */
     private fun sendNotification(messageBody: RemoteMessage) {
@@ -72,11 +75,12 @@ class GossipFirebaseMessagingService : FirebaseMessagingService() {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         val pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
             PendingIntent.FLAG_ONE_SHOT)
+        //TODO: Launch the chat log with the appropriate stuff like flags and name
 
         val channelId = getString(R.string.FCM_notification_channel_id)
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
         val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            //.setSmallIcon(R.drawable.ic_stat_ic_notification)
+            .setSmallIcon(R.drawable.ic_launcher_background)
             .setContentTitle(getString(R.string.FCM_message))
             .setContentText(messageBody.toString())
             .setAutoCancel(true)
@@ -95,7 +99,4 @@ class GossipFirebaseMessagingService : FirebaseMessagingService() {
 
         notificationManager.notify(0 /* ID of notification */, notificationBuilder.build())
     }
-
-
-
 }

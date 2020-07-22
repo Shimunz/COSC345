@@ -42,7 +42,7 @@ class NewMessagesActivity : AppCompatActivity() {
     }
 
     /**
-     * Fetches users from the database
+     * Fetches users from the database, and calls on the recycler view.
      */
     private fun fetchUser() {
         val database = FirebaseDatabase.getInstance().getReference("/user")
@@ -95,6 +95,7 @@ class MyAdapter(private val userList: MutableList<Users>) :
         init {
             itemView.setOnClickListener(){
                 val intent = Intent(itemView.context, ChatLog::class.java)
+                intent.putExtra("USERNAME", it.textView_username_new_messages.text.toString())
                 itemView.context.startActivity(intent)
             }
         }

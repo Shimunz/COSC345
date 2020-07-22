@@ -19,10 +19,11 @@ class ChatLog : AppCompatActivity() {
      *
      */
     override fun onCreate(savedInstanceState: Bundle?) {
+        val name = intent.getStringExtra("USERNAME")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
-        supportActionBar?.title = "Chat log"
+        supportActionBar?.title = name
 
         rv_chat_log.layoutManager = LinearLayoutManager(this)
         rv_chat_log.adapter = ChatLogAdapter(messageList)
