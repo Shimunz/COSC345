@@ -13,6 +13,7 @@ class Users {
     var username : String? =null
     var email : String? = null
     var userInstanceId : String? = null
+    val Chats = mutableListOf<String>()
 
     constructor()
 

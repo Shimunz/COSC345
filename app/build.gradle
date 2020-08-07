@@ -27,7 +27,7 @@ android {
     }
 
     dokka {
-        outputFormat = "javadoc"
+        outputFormat = "gfm"
         outputDirectory = "$buildDir/dokkaJavadoc"
     }
 

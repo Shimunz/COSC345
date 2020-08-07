@@ -1,0 +1,8 @@
+[app](../../index.md) / [com.example.gossip](../index.md) / [MainMenu](index.md) / [onCreate](./on-create.md)
+
+# onCreate
+
+`protected fun onCreate(savedInstanceState: Bundle?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+
+Creates the main menu for new users
+

@@ -1,0 +1,4 @@
+#Fri Aug 07 09:42:30 NZST 2020
+base.0=C\:\\Users\\simon\\Documents\\COSC345\\app\\build\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
