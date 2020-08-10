@@ -1,5 +1,7 @@
 # Gossip
 
+Currently located in: [Here](com.example.gossip/index.md)
+
 ## Testing accounts
 | Email | Password |
 |-------|----------|
