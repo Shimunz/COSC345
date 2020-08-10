@@ -7,4 +7,5 @@ class Messages {
     var name : String? = null
     var message : String? = null
 
+    constructor()
 }

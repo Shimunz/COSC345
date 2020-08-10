@@ -1,12 +1,14 @@
 package com.example.gossip
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_log_from_row.view.*
 
@@ -42,6 +44,20 @@ class ChatLog : AppCompatActivity() {
                 userMessage = editText_message.text.toString()
                 messageList.add(userMessage)
                 (rv_chat_log.adapter as ChatLogAdapter).notifyItemInserted(messageList.size)
+
+                val name = intent.getStringExtra("USERNAME")
+                val dbMessages = FirebaseDatabase.getInstance().getReference("/Message")
+                val messages = Messages()
+                messages.name = name
+                messages.message = userMessage
+                messages.messageNumber = dbMessages.push().key
+                dbMessages.child(messages.messageNumber!!).setValue(messages)
+                    .addOnCompleteListener(){
+                        if(it.isSuccessful){
+                            Log.w(null, "Successfully added messages to database")
+                        }
+                    }
+
             }
         }
     }
