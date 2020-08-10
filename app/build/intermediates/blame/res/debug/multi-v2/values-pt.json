@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\simon\\Documents\\COSC345\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-pt\\values-pt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\6ed11b0792d356d9df035f06c7d54dd5\\navigation-ui-2.2.2\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\8fca876368ccd2edc84be7ef5149b570\\navigation-ui-2.2.2\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\2fc6b7cb6903e4e2ff99969eeef677d6\\appcompat-1.1.0\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\19c5d0cb98e5d78b50bc95a8be94008a\\appcompat-1.1.0\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\27d7fd53e6eda03853b79c5fffe43b8a\\core-1.2.0\\res\\values-pt\\values-pt.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\963e69937f6215c8efe1eb5ee3f3d954\\core-1.2.0\\res\\values-pt\\values-pt.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
