@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.android.synthetic.main.chat_log_settings.*
 
 /**
  * A group of Simon Zhao, Pakjira Jitsawatpaiboon and Minh Tran
@@ -42,5 +43,17 @@ class Anonimity_control : AppCompatActivity() {
     buttonNo.setOnClickListener(){
             //This will show the full user id and etc
     }
+
+        btn_Full_Anonimity.setOnClickListener(){
+
+        }
+
+        btn_Half_Anonimity.setOnClickListener(){
+
+        }
+
+        btn_No_Anonimity.setOnClickListener(){
+
+        }
     }
 }
