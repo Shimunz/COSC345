@@ -25,13 +25,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+}
 
-    dokka {
-        outputFormat = "gfm"
-        outputDirectory = "$buildDir/dokkaJavadoc"
-    }
-
-
+dokkaGfm {
+    outputDirectory = "./Documentation"
 }
 
 dependencies {

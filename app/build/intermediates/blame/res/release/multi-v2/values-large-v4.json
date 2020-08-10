@@ -4,7 +4,7 @@
             "outputFile": "C:\\Users\\simon\\Documents\\COSC345\\app\\build\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-large-v4\\values-large-v4.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\d5c01bc0bef964f1942e77ca65002cdc\\material-1.0.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\c544ffa8125bf17ff880709763cceba5\\material-1.0.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\19c5d0cb98e5d78b50bc95a8be94008a\\appcompat-1.1.0\\res\\values-large-v4\\values-large-v4.xml",
+                    "source": "C:\\Users\\simon\\.gradle\\caches\\transforms-2\\files-2.1\\a4e4c62e3a4b1ef6de5735def71f14bf\\appcompat-1.1.0\\res\\values-large-v4\\values-large-v4.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
                         "startColumns": "4,4,4,4,4,4,4,4,4",
