@@ -22,10 +22,3 @@ jobs:
     
     - name: Build with Gradle
       run: ./gradlew build
-
-    - name: Publish to GitHub Wiki
-      uses: SwiftDocOrg/github-wiki-publish-action@1.0.0
-      with:
-        path: "app/build/dokkaJavadoc"
-      env:
-        GH_PERSONAL_ACCESS_TOKEN: ${{secrets.documentation_token }}  
