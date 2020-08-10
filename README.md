@@ -1,6 +1,7 @@
 # Gossip
 
-Currently located in: [Here](com.example.gossip/index.md)
+Currently located in: [Here](https://github.com/Shimunz/COSC345/blob/master/app/Documentation/app/index.md)
+Uploading to wiki is WIP
 
 ## Testing accounts
 | Email | Password |
