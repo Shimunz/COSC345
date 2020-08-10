@@ -26,5 +26,5 @@ jobs:
       with:
         java-version: 1.8
       
-    - name: Build with Gradle
-      run: ./gradlew ktlinkCheck
+    - name: Static anaylsis
+      run: ./gradlew ktlintCheck
