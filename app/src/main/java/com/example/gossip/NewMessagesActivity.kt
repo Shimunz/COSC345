@@ -87,7 +87,7 @@ class MyAdapter(private val userList: MutableList<Users>) :
      *
      * @property itemView the item we are adding stuff to
      */
-    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // Provide a reference to the views for each data item
         // Complex data items may need more than one view per item, and
         // you provide access to all the views for a data item in a view holder.
@@ -95,7 +95,11 @@ class MyAdapter(private val userList: MutableList<Users>) :
         init {
             itemView.setOnClickListener(){
                 val intent = Intent(itemView.context, ChatLog::class.java)
-                intent.putExtra("USERNAME", it.textView_username_new_messages.text.toString())
+                val pos = it.textView_userlist_selectPos.text.toString().toInt()
+                val uname = userList[pos].username
+                val id = userList[pos].uid
+                intent.putExtra("USERNAME", uname)
+                intent.putExtra("USERID", id)
                 itemView.context.startActivity(intent)
             }
         }
@@ -115,6 +119,7 @@ class MyAdapter(private val userList: MutableList<Users>) :
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val i = userList[position]
         holder.itemView.textView_username_new_messages?.text = i.username
+        holder.itemView.textView_userlist_selectPos.text = position.toString()
     }
 
     // Return the size of your dataset (invoked by the layout manager)
