@@ -59,9 +59,6 @@ class RegisterMenu : AppCompatActivity() {
         }
     }
 
-    /**
-     * Saves users to the Firebase data base
-     */
     private fun saveUserToFirebaseDatabase() {
         val uid = FirebaseAuth.getInstance().uid ?: ""
         val ref = FirebaseDatabase.getInstance().getReference("/user/$uid")

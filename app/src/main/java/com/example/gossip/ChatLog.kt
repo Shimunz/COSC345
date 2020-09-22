@@ -12,14 +12,14 @@ import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_log_from_row.view.*
 
+/**
+ * Chat log. This is where the user will send and recieve chat information
+ */
 class ChatLog : AppCompatActivity() {
 
     private var messageList = mutableListOf<String>()
     private var userMessage = ""
 
-    /**
-     *
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         val name = intent.getStringExtra("USERNAME")
         super.onCreate(savedInstanceState)
@@ -34,10 +34,8 @@ class ChatLog : AppCompatActivity() {
 
     }
 
-    /**
-     * Actions for what the onClickListeners do. E.g: sets the send button actions
-     * in the chat log activity.
-     */
+    //Actions for what the onClickListeners do. E.g: sets the send button actions
+    //in the chat log activity.
     private val clickListener: View.OnClickListener = View.OnClickListener {
         when (it?.id) {
             R.id.button_send-> {
@@ -70,7 +68,8 @@ class ChatLog : AppCompatActivity() {
 class ChatLogAdapter(private val chat: MutableList<String>) :
     RecyclerView.Adapter<ChatLogAdapter.ChatLogViewHolder>() {
 
-    class ChatLogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
+
+    inner class ChatLogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         // TODO: Do something here
     }
 
