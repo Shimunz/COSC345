@@ -2,7 +2,7 @@
 
 buildscript {
     ext.kotlin_version = '1.3.72'
-    ext.dokka_version = '1.4.0-rc'
+    ext.dokka_version = '0.10.0'
     repositories {
         google()
         jcenter()
@@ -23,11 +23,7 @@ buildscript {
 
 plugins {
     id "org.jlleitschuh.gradle.ktlint" version "9.3.0"
-    id("org.jetbrains.dokka") version "1.4.0-rc"
-}
-
-dependencies {
-    dokkaHtmlPlugin("org.jetbrains.dokka:kotlin-as-java-plugin:1.4.0-rc")
+    id("org.jetbrains.dokka") version "0.10.0"
 }
 
 allprojects {
@@ -37,6 +33,7 @@ allprojects {
         
     }
     apply plugin: "org.jlleitschuh.gradle.ktlint-idea"
+    apply plugin: 'org.jetbrains.dokka'
 }
 
 task clean(type: Delete) {

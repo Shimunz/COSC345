@@ -1,5 +1,8 @@
 package com.example.gossip
 
+/**
+ * Chat members that are in a group
+ */
 class ChatMembers() {
 
     var chatId : String? = null

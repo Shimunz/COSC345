@@ -8,6 +8,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main_menu.*
 
+/**
+ * Main menu
+ * The first screen user will see
+ * Displays all the chats
+ */
 class MainMenu : AppCompatActivity() {
 
     /**
@@ -33,9 +38,7 @@ class MainMenu : AppCompatActivity() {
         }
     }
 
-    /**
-     * Used to set the behaviour of buttons
-     */
+    //Sets buttons behaviour
     private val clickListener :View.OnClickListener = View.OnClickListener {
         when (it?.id){
             //Sets the register button behaviour

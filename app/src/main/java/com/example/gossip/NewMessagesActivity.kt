@@ -21,7 +21,6 @@ import kotlinx.android.synthetic.main.user_list.view.*
  * Makes the select user screen
  *
  * Calls on a recylcerviewer to do so
- *
  */
 class NewMessagesActivity : AppCompatActivity() {
 

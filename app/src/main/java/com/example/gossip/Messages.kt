@@ -1,5 +1,9 @@
 package com.example.gossip
 
+/**
+ * Messgaes
+ * How messages are going to be stored
+ */
 class Messages {
 
     val chatId : String? = null
