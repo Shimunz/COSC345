@@ -98,32 +98,35 @@ class MyAdapter(private val userList: MutableList<Users>) :
                 val intent = Intent(itemView.context, ChatLog::class.java)
                 val pos = it.textView_userlist_selectPos.text.toString().toInt()
                 val uname = userList[pos].username
-                val id = userList[pos].uid
+                val id = userList[pos].uid.toString()
+                val key = newGroup(id)
                 intent.putExtra("USERNAME", uname)
                 intent.putExtra("USERID", id)
+                intent.putExtra("CHATKEY", key)
                 itemView.context.startActivity(intent)
             }
         }
 
-        private fun newGroup(chatUserID : String){
+        private fun newGroup(chatUserID : String): String? {
             val uid = FirebaseAuth.getInstance().uid ?: ""
             val key: String? = FirebaseDatabase.getInstance().getReference("chats").push().key
             val chatDb = FirebaseDatabase.getInstance().getReference("/chats/$key")
             val chatMemberDb = FirebaseDatabase.getInstance().getReference("/chatMembers/$key")
-            val userDb = FirebaseDatabase.getInstance().getReference("/user/$uid/chats")
+            val userDb = FirebaseDatabase.getInstance().getReference("/user/$uid")
+            val yUserDb = FirebaseDatabase.getInstance().getReference("/user/$chatUserID")
 
             val chat = Chats(key, "", "")
 
-            var memberArray = listOf(uid, chatUserID)
+            val memberArray = listOf(uid, chatUserID)
             val chatMember = ChatMembers (key, memberArray)
 
-            val user = Users()
 
             chatDb.setValue(chat)
             chatMemberDb.setValue(chatMember)
-            userDb.ref.child("chats").push().setValue(uid)
-            userDb.ref.child("chats").push().setValue(chatUserID)
+            userDb.ref.child("chats").push().setValue(key)
+            yUserDb.ref.child("chats").push().setValue(key)
 
+            return key
         }
 
     }
@@ -131,7 +134,7 @@ class MyAdapter(private val userList: MutableList<Users>) :
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyAdapter.MyViewHolder {
         // create a new view
-        val textView = LayoutInflater.from(parent?.context)
+        val textView = LayoutInflater.from(parent.context)
         val cellRow = textView.inflate(R.layout.user_list, parent, false)
         // set the view's size, margins, paddings and layout parameters
 
