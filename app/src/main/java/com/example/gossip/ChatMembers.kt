@@ -1,8 +1,12 @@
 package com.example.gossip
 
-class ChatMembers {
+class ChatMembers() {
 
-    val chatId : String? = null
-    var users : Array<Users>? = null
+    var chatId : String? = null
+    var members : List<String>? = null
 
+    constructor(key: String?, memberArray: List<String>) : this() {
+        this.chatId = chatId
+        this.members = memberArray
+    }
 }

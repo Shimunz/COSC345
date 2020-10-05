@@ -5,14 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.menu.ActionMenuItemView
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_new_message.*
+import kotlinx.android.synthetic.main.activity_register.*
 import kotlinx.android.synthetic.main.user_list.view.*
 
 /**
@@ -103,6 +105,28 @@ class MyAdapter(private val userList: MutableList<Users>) :
                 itemView.context.startActivity(intent)
             }
         }
+
+        private fun newGroup(chatUserID : String){
+            val uid = FirebaseAuth.getInstance().uid ?: ""
+            val key: String? = FirebaseDatabase.getInstance().getReference("chats").push().key
+            val chatDb = FirebaseDatabase.getInstance().getReference("/chats/$key")
+            val chatMemberDb = FirebaseDatabase.getInstance().getReference("/chatMembers/$key")
+            val userDb = FirebaseDatabase.getInstance().getReference("/user/$uid/chats")
+
+            val chat = Chats(key, "", "")
+
+            var memberArray = listOf(uid, chatUserID)
+            val chatMember = ChatMembers (key, memberArray)
+
+            val user = Users()
+
+            chatDb.setValue(chat)
+            chatMemberDb.setValue(chatMember)
+            userDb.ref.child("chats").push().setValue(uid)
+            userDb.ref.child("chats").push().setValue(chatUserID)
+
+        }
+
     }
 
     // Create new views (invoked by the layout manager)

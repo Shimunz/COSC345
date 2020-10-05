@@ -6,7 +6,7 @@ class Chats {
     var title : String? = null
     var lastMessage : String? = null
 
-    constructor(title: String?, lastMessage: String?) {
+    constructor(chatID:String?, title: String?, lastMessage: String?) {
         this.title = title
         this.lastMessage = lastMessage
     }
