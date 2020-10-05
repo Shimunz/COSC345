@@ -6,8 +6,7 @@
 
 
 ## Docs
-Currently located in: [Here](https://github.com/Shimunz/COSC345/blob/master/app/Documentation/app/index.md)
-Uploading to wiki is WIP
+Documentation is located in github pages which can be found under deployment: [Here](https://github.com/Shimunz/COSC345/deployments/activity_log?environment=github-pages)
 
 ## Testing accounts
 | Email | Password |
