@@ -1,7 +1,7 @@
 package com.example.gossip
 
 /**
- * Chat members that are in a group
+ * Chat members that are in a groupgit pusg
  */
 class ChatMembers() {
 
