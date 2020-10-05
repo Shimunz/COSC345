@@ -27,9 +27,9 @@ android {
     }
 }
 
-dokkaGfm {
-    outputDirectory = "./Documentation"
-}
+//dokkaGfm {
+//   outputDirectory = "./Documentation"
+//}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
