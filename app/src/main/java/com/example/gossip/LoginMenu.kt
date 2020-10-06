@@ -9,6 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
+/**
+ * The login menu
+ * This is the activity where users will login
+ */
 class LoginMenu : AppCompatActivity() {
 
     /**

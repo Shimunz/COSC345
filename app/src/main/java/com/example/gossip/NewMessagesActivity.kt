@@ -41,9 +41,8 @@ class NewMessagesActivity : AppCompatActivity() {
 
     }
 
-    /**
-     * Fetches users from the database, and calls on the recycler view.
-     */
+
+    //Fetches users from the database, and calls on the recycler view.
     private fun fetchUser() {
         val database = FirebaseDatabase.getInstance().getReference("/user")
 

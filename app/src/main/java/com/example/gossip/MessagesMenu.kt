@@ -117,6 +117,10 @@ class MessagesMenu : AppCompatActivity() {
     }
 }
 
+/**
+ * The recyclerview adaptor for messages menu
+ * Reuses some things from the new messages recycler view
+ */
 class MessageMenuAdaptor(private val myDataset: MutableList<String>) :
     RecyclerView.Adapter<MessageMenuAdaptor.MyViewHolder>() {
 
