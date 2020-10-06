@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.user_list.view.*
  */
 class NewMessagesActivity : AppCompatActivity() {
 
-
     /**
      * Loads the activity and changes the title of activity.
      * Also calls the recyclerview
