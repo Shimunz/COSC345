@@ -92,7 +92,7 @@ class MyAdapter(private val userList: MutableList<Users>) :
         // you provide access to all the views for a data item in a view holder.
         // Each data item is just a string in this case that is shown in a TextView.
         init {
-            itemView.setOnClickListener(){
+            itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ChatLog::class.java)
                 val pos = it.textView_userlist_selectPos.text.toString().toInt()
                 val uname = userList[pos].username

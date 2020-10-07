@@ -130,7 +130,7 @@ class MessageMenuAdaptor(private val myDataset: MutableList<String>) :
     // Each data item is just a string in this case that is shown in a TextView.
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)  {
         init {
-            itemView.setOnClickListener(){
+            itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ChatLog::class.java)
                 val pos = it.textView_userlist_selectPos.text.toString().toInt()
                 val idChat = myDataset[pos]

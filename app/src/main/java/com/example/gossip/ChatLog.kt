@@ -9,28 +9,35 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_log_from_row.view.*
+import kotlinx.android.synthetic.main.chat_log_to_row.view.*
+import kotlinx.android.synthetic.main.chat_log_to_row.view.textView_chat_log_to
 
 /**
  * Chat log. This is where the user will send and recieve chat information
  */
 class ChatLog : AppCompatActivity() {
 
-    private var messageList = mutableListOf<String>()
+    private var messageList = mutableListOf<Messages>()
     private var userMessage = ""
+    private val currentuid = FirebaseAuth.getInstance().uid
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val name = intent.getStringExtra("USERNAME")
+        val chatKey = intent.getStringExtra("CHATKEY")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
         supportActionBar?.title = name
 
         rv_chat_log.layoutManager = LinearLayoutManager(this)
-        rv_chat_log.adapter = ChatLogAdapter(messageList)
 
+        getFirebaseDatabaseMessages(chatKey, false)
         button_send.setOnClickListener(clickListener)
 
     }
@@ -43,41 +50,53 @@ class ChatLog : AppCompatActivity() {
                 userMessage = editText_message.text.toString()
 
                 sendToFirebaseDatabase(userMessage)
-                /*
-                //To redo
-                messageList.add(userMessage)
-                (rv_chat_log.adapter as ChatLogAdapter).notifyItemInserted(messageList.size)
-
-                val name = intent.getStringExtra("USERNAME")
-                val dbMessages = FirebaseDatabase.getInstance().getReference("/Message")
-                val messages = Messages()
-                messages.name = name
-                messages.message = userMessage
-                messages.messageNumber = dbMessages.push().key
-                dbMessages.child(messages.messageNumber!!).setValue(messages)
-                    .addOnCompleteListener(){
-                        if(it.isSuccessful){
-                            Log.w(null, "Successfully added messages to database")
-                        }
-                    }
-                */
             }
         }
     }
 
     private fun sendToFirebaseDatabase(userMessage: String) {
         val idChat = intent.getStringExtra("CHATKEY")
+        val key: String? = FirebaseDatabase.getInstance().getReference("/messages/$idChat").push().key
         val user = FirebaseAuth.getInstance().currentUser
-        val mID = FirebaseDatabase.getInstance().getReference("/Message/$idChat")
-        val uname = user?.displayName
+        val mID = FirebaseDatabase.getInstance().getReference("/messages/$idChat")
 
-        val message = Messages(uname, userMessage)
+        val message = Messages(currentuid, userMessage)
 
-        mID.ref.child("message").push().setValue("")
+        if (key != null) {
+            mID.ref.push().setValue(message)
+            getFirebaseDatabaseMessages(idChat, true)
+            editText_message.setText("")
+
+        }
     }
 
-    private fun getFirebaseDatabaseMesaages(){
-        val database = FirebaseDatabase.getInstance().getReference("/message")
+    private fun getFirebaseDatabaseMessages(idChat : String, t: Boolean){
+        val database = FirebaseDatabase.getInstance().getReference("/messages/$idChat")
+
+        database.addValueEventListener (object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                val messagesList = mutableListOf<Messages>()
+                p0.children.forEach{
+                    val messageItem = it.getValue(Messages::class.java)
+                    if (messageItem != null) {
+                        messagesList.add(messageItem)
+                        Log.d("messages", messageItem.message)
+                    }
+                }
+                messageList = messagesList
+
+                if (t){
+                    rv_chat_log.adapter = ChatLogAdapter(messageList)
+                    Log.d("messages", "Loads on true")
+                }else{
+                    rv_chat_log.adapter = ChatLogAdapter(messageList)
+                    Log.d("messages", "Loads on false")
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+            }
+        })
 
     }
 
@@ -86,7 +105,7 @@ class ChatLog : AppCompatActivity() {
 /**
  * Recyclerview. Used to display a group of items efficiently
  */
-class ChatLogAdapter(private val chat: MutableList<String>) :
+class ChatLogAdapter(private val chat: MutableList<Messages>) :
     RecyclerView.Adapter<ChatLogAdapter.ChatLogViewHolder>() {
 
 
@@ -97,11 +116,10 @@ class ChatLogAdapter(private val chat: MutableList<String>) :
     override fun onCreateViewHolder(parent: ViewGroup,
                                     viewType: Int) : ChatLogAdapter.ChatLogViewHolder {
 
-        val textView = LayoutInflater.from(parent?.context)
+        val textView = LayoutInflater.from(parent.context)
             .inflate(R.layout.chat_log_to_row, parent, false)
 
         return ChatLogViewHolder(textView)
-
     }
 
 
@@ -109,8 +127,18 @@ class ChatLogAdapter(private val chat: MutableList<String>) :
         return chat.size
     }
 
+    private fun checkPerson(personID: String): Boolean {
+        val pID = FirebaseAuth.getInstance().uid
+        return personID == pID
+    }
+
     override fun onBindViewHolder(holder: ChatLogAdapter.ChatLogViewHolder, position: Int) {
-        holder.itemView.textView_chat_log.text = chat[position]
+        val temp = chat[position]
+        if (checkPerson(temp.name.toString())){
+            holder.itemView.textView_chat_log_to.text = chat[position].message
+        }else{
+            holder.itemView.textView_chat_log_from.text = chat[position].message
+        }
     }
 
 }

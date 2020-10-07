@@ -21,38 +21,38 @@ class Anonimity_control : AppCompatActivity() {
         val buttonHalf = findViewById<Button>(R.id.btn_Full_Anonimity)
         val buttonNo = findViewById<Button>(R.id.btn_Full_Anonimity)
 
-    setContentView(R.layout.chat_log_from_row)
-        val textReceived = findViewById<TextView>(R.id.textView_chat_log)
+    setContentView(R.layout.chat_log_to_row)
+        val textReceived = findViewById<TextView>(R.id.textView_chat_log_to)
 
     setContentView(R.layout.chat_log_from_row)
-        val textSent = findViewById<TextView>(R.id.textView_chat_log)
+        val textSent = findViewById<TextView>(R.id.textView_chat_log_from)
 
     //Set message received and sent in same colour
-    buttonFull.setOnClickListener(){
+    buttonFull.setOnClickListener {
             textReceived.setBackgroundColor(Color.argb(255, 255, 255, 255))
             textSent.setBackgroundColor(Color.argb(255, 255, 255, 255))
     }
 
         //Set message received and and sent in different colours
-    buttonHalf.setOnClickListener(){
+    buttonHalf.setOnClickListener {
             textReceived.setBackgroundColor(Color.argb(255, 0, 255, 255))
             textSent.setBackgroundColor(Color.argb(255, 255, 0, 255))
     }
 
         //Dont change anything if there is a no button clicked
-    buttonNo.setOnClickListener(){
+    buttonNo.setOnClickListener {
             //This will show the full user id and etc
     }
 
-        btn_Full_Anonimity.setOnClickListener(){
+        btn_Full_Anonimity.setOnClickListener {
 
         }
 
-        btn_Half_Anonimity.setOnClickListener(){
+        btn_Half_Anonimity.setOnClickListener {
 
         }
 
-        btn_No_Anonimity.setOnClickListener(){
+        btn_No_Anonimity.setOnClickListener {
 
         }
     }
