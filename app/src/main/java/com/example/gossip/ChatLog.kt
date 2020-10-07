@@ -108,18 +108,28 @@ class ChatLog : AppCompatActivity() {
 class ChatLogAdapter(private val chat: MutableList<Messages>) :
     RecyclerView.Adapter<ChatLogAdapter.ChatLogViewHolder>() {
 
+    private val VIEW_TYPE_ME = 1
+    private val VIEW_TYPE_OTHER = 2
 
     inner class ChatLogViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         // TODO: Do something here
     }
 
     override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int) : ChatLogAdapter.ChatLogViewHolder {
+                                    viewType: Int) : ChatLogViewHolder {
+        if (viewType == VIEW_TYPE_ME){
+            val textView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.chat_log_to_row, parent, false)
 
-        val textView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.chat_log_to_row, parent, false)
+            return ChatLogViewHolder(textView)
+        }else{
+            val textView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.chat_log_from_row, parent, false)
 
-        return ChatLogViewHolder(textView)
+            return ChatLogViewHolder(textView)
+        }
+
+
     }
 
 
@@ -138,6 +148,15 @@ class ChatLogAdapter(private val chat: MutableList<Messages>) :
             holder.itemView.textView_chat_log_to.text = chat[position].message
         }else{
             holder.itemView.textView_chat_log_from.text = chat[position].message
+        }
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        val temp = chat[position]
+        return if (checkPerson(temp.name.toString())){
+            VIEW_TYPE_ME
+        }else{
+            VIEW_TYPE_OTHER
         }
     }
 
