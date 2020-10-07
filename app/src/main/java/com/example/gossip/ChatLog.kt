@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_chat_log.*
 import kotlinx.android.synthetic.main.chat_log_from_row.view.*
@@ -40,6 +41,10 @@ class ChatLog : AppCompatActivity() {
         when (it?.id) {
             R.id.button_send-> {
                 userMessage = editText_message.text.toString()
+
+                sendToFirebaseDatabase(userMessage)
+                /*
+                //To redo
                 messageList.add(userMessage)
                 (rv_chat_log.adapter as ChatLogAdapter).notifyItemInserted(messageList.size)
 
@@ -55,9 +60,25 @@ class ChatLog : AppCompatActivity() {
                             Log.w(null, "Successfully added messages to database")
                         }
                     }
-
+                */
             }
         }
+    }
+
+    private fun sendToFirebaseDatabase(userMessage: String) {
+        val idChat = intent.getStringExtra("CHATKEY")
+        val user = FirebaseAuth.getInstance().currentUser
+        val mID = FirebaseDatabase.getInstance().getReference("/Message/$idChat")
+        val uname = user?.displayName
+
+        val message = Messages(uname, userMessage)
+
+        mID.ref.child("message").push().setValue("")
+    }
+
+    private fun getFirebaseDatabaseMesaages(){
+        val database = FirebaseDatabase.getInstance().getReference("/message")
+
     }
 
 }
