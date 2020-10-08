@@ -52,7 +52,7 @@ class ChatLog : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.button_rename_chat -> {
-                val intent = Intent(this, NewMessagesActivity::class.java)
+                val intent = Intent(this, RenameDialog::class.java)
                 startActivity(intent)
                 true
             }
