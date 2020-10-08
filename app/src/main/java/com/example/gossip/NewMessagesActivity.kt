@@ -111,7 +111,7 @@ class MyAdapter(private val userList: MutableList<Users>) :
             val userDb = FirebaseDatabase.getInstance().getReference("/user/$uid")
             val yUserDb = FirebaseDatabase.getInstance().getReference("/user/$chatUserID")
 
-            val chat = Chats("Tmp", "")
+            val chat = Chats("Tmp", "", key)
 
             val memberArray = listOf(uid, chatUserID)
             val chatMember = ChatMembers (key, memberArray)

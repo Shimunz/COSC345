@@ -148,7 +148,7 @@ class MessageMenuAdaptor(private val myDataset: MutableList<Chats>) :
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ChatLog::class.java)
                 val pos = it.textView_userlist_selectPos.text.toString().toInt()
-                val idChat = myDataset[pos].toString()
+                val idChat = myDataset[pos].id
                 intent.putExtra("USERNAME", "temp")
                 intent.putExtra("USERID", "id")
                 intent.putExtra("CHATKEY", idChat)
