@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_chat_log.*
+import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.chat_log_from_row.view.*
 import kotlinx.android.synthetic.main.chat_log_to_row.view.*
 import kotlinx.android.synthetic.main.chat_log_to_row.view.textView_chat_log_to
@@ -26,20 +27,43 @@ class ChatLog : AppCompatActivity() {
     private var messageList = mutableListOf<Messages>()
     private var userMessage = ""
     private val currentuid = FirebaseAuth.getInstance().uid
+    //private var chatName = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val name = intent.getStringExtra("USERNAME")
+        val name = intent.getStringExtra("NAME")
         val chatKey = intent.getStringExtra("CHATKEY")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_log)
 
-        supportActionBar?.title = name
+        getChatName()
 
         rv_chat_log.layoutManager = LinearLayoutManager(this)
 
         getFirebaseDatabaseMessages(chatKey, false)
         button_send.setOnClickListener(clickListener)
 
+    }
+
+    private fun getChatName() {
+        val idChat = intent.getStringExtra("CHATKEY")
+        val ref = FirebaseDatabase.getInstance().getReference("/chats/")
+
+        ref.addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(p0: DataSnapshot) {
+                p0.children.forEach{
+                    if (it.key == idChat){
+                        val chatItem = it.getValue(Chats::class.java)
+                        if (chatItem != null) {
+                            supportActionBar?.title = chatItem.title.toString()
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
     }
 
     //Actions for what the onClickListeners do. E.g: sets the send button actions
@@ -49,7 +73,9 @@ class ChatLog : AppCompatActivity() {
             R.id.button_send-> {
                 userMessage = editText_message.text.toString()
 
-                sendToFirebaseDatabase(userMessage)
+                if (!userMessage.isNullOrEmpty()) {
+                    sendToFirebaseDatabase(userMessage)
+                }
             }
         }
     }
@@ -80,17 +106,14 @@ class ChatLog : AppCompatActivity() {
                     val messageItem = it.getValue(Messages::class.java)
                     if (messageItem != null) {
                         messagesList.add(messageItem)
-                        Log.d("messages", messageItem.message)
                     }
                 }
                 messageList = messagesList
 
                 if (t){
                     rv_chat_log.adapter = ChatLogAdapter(messageList)
-                    Log.d("messages", "Loads on true")
                 }else{
                     rv_chat_log.adapter = ChatLogAdapter(messageList)
-                    Log.d("messages", "Loads on false")
                 }
             }
 

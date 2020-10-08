@@ -95,10 +95,8 @@ class MyAdapter(private val userList: MutableList<Users>) :
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ChatLog::class.java)
                 val pos = it.textView_userlist_selectPos.text.toString().toInt()
-                val uname = userList[pos].username
                 val id = userList[pos].uid.toString()
                 val key = newGroup(id)
-                intent.putExtra("USERNAME", uname)
                 intent.putExtra("USERID", id)
                 intent.putExtra("CHATKEY", key)
                 itemView.context.startActivity(intent)
@@ -113,7 +111,7 @@ class MyAdapter(private val userList: MutableList<Users>) :
             val userDb = FirebaseDatabase.getInstance().getReference("/user/$uid")
             val yUserDb = FirebaseDatabase.getInstance().getReference("/user/$chatUserID")
 
-            val chat = Chats(key, "", "")
+            val chat = Chats("", "")
 
             val memberArray = listOf(uid, chatUserID)
             val chatMember = ChatMembers (key, memberArray)
