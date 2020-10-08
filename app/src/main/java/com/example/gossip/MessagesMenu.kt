@@ -37,9 +37,6 @@ class MessagesMenu : AppCompatActivity() {
         getChats()
     }
 
-    /**
-     * Checks to see if user is already logged in
-     */
     override fun onStart() {
         super.onStart()
         getUserData()

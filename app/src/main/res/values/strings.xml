@@ -2,4 +2,7 @@
     <string name="app_name">Gossip</string>
     <string name="FCM_notification_channel_id">FCM notification channel id</string>
     <string name="FCM_message">FCM message</string>
+    <string name="Rename_chat_group">Rename Chat Group</string>
+    <string name="rename">Rename</string>
+    <string name="cancel">Cancel</string>
 </resources>
