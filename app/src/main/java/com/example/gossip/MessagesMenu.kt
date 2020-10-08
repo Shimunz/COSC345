@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.*
 import android.widget.PopupMenu
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.iid.FirebaseInstanceId
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_messages_menu.*
 import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.user_list.view.*
@@ -32,6 +34,7 @@ class MessagesMenu : AppCompatActivity() {
         setContentView(R.layout.activity_messages_menu)
 
         supportActionBar?.title = "Chats"
+
 
         rv_messages_menu.layoutManager = LinearLayoutManager(this)
         getChats()
