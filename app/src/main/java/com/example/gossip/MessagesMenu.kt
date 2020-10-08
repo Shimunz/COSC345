@@ -5,9 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.PopupMenu
-import android.widget.TextView
-import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.gms.tasks.OnCompleteListener
@@ -18,7 +15,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.iid.FirebaseInstanceId
 import kotlinx.android.synthetic.main.activity_messages_menu.*
-import kotlinx.android.synthetic.main.activity_new_message.*
 import kotlinx.android.synthetic.main.user_list.view.*
 
 /**
@@ -104,6 +100,28 @@ class MessagesMenu : AppCompatActivity() {
                     }
                 }
 
+                loadChats(chatGroups)
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+
+            }
+        })
+    }
+
+    private fun loadChats(chatGroups: MutableList<String>){
+        val database = FirebaseDatabase.getInstance().getReference("chats")
+
+        database.addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(p0: DataSnapshot) {
+                val chatGroups = mutableListOf<Chats>()
+                p0.children.forEach{
+                    var userGroup = it.getValue(Chats::class.java)
+                    if (userGroup != null) {
+                        chatGroups.add(userGroup)
+                    }
+                }
+
                 rv_messages_menu.adapter = MessageMenuAdaptor(chatGroups)
             }
 
@@ -118,7 +136,7 @@ class MessagesMenu : AppCompatActivity() {
  * The recyclerview adaptor for messages menu
  * Reuses some things from the new messages recycler view
  */
-class MessageMenuAdaptor(private val myDataset: MutableList<String>) :
+class MessageMenuAdaptor(private val myDataset: MutableList<Chats>) :
     RecyclerView.Adapter<MessageMenuAdaptor.MyViewHolder>() {
 
     // Provide a reference to the views for each data item
@@ -130,7 +148,7 @@ class MessageMenuAdaptor(private val myDataset: MutableList<String>) :
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, ChatLog::class.java)
                 val pos = it.textView_userlist_selectPos.text.toString().toInt()
-                val idChat = myDataset[pos]
+                val idChat = myDataset[pos].toString()
                 intent.putExtra("USERNAME", "temp")
                 intent.putExtra("USERID", "id")
                 intent.putExtra("CHATKEY", idChat)
@@ -156,7 +174,7 @@ class MessageMenuAdaptor(private val myDataset: MutableList<String>) :
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         var i = myDataset[position]
-        holder.itemView.textView_username_new_messages?.text = i
+        holder.itemView.textView_username_new_messages?.text = i.title
         holder.itemView.textView_userlist_selectPos.text = position.toString()
     }
 
