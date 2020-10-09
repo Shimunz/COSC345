@@ -9,8 +9,6 @@
 ## Docs
 Documentation is located in github pages which can be found under environments or [Here](https://github.com/Shimunz/COSC345/deployments/activity_log?environment=github-pages)
 
-## Testing accounts
-| Email | Password |
-|-------|----------|
-|test@email.com   | test123 |
-| test2@email.com | test2123|
+## Known bugs
+- Renaming chat will cause a crash
+
